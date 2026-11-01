@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Call Summary QA Reviewer</title>
+<style>
+body{font-family:Arial,sans-serif;background:#f4f6fa;color:#253247;margin:0;padding:32px}main{max-width:1000px;margin:auto}.panels{display:grid;grid-template-columns:1fr 1fr;gap:16px}section{background:white;border:1px solid #dde3ec;border-radius:12px;padding:22px}p{line-height:1.7}.warning{background:#fff2d9;padding:10px;border-radius:6px}button{border:1px solid #ccd5e2;background:white;padding:12px 18px;border-radius:8px;cursor:pointer;margin:5px}button:hover{background:#e8efff}#result{font-weight:bold;margin-top:15px}@media(max-width:650px){.panels{grid-template-columns:1fr}body{padding:15px}}
+</style>
+</head>
+<body><main><h1>Call Summary QA Reviewer</h1><p>Compare the call transcript with its AI-generated summary.</p>
+<div class="panels"><section><h2>Call Transcript</h2><p><strong>Customer:</strong> My delivery hasn't arrived.</p><p><strong>Agent:</strong> I can see it's delayed until Friday.</p><p><strong>Customer:</strong> Could I get a refund instead?</p><p><strong>Agent:</strong> I'll need to check with my manager.</p></section>
+<section><h2>AI-Generated Summary</h2><p>The customer contacted support about a delayed delivery.</p><p class="warning">The agent confirmed a refund would be issued.</p></section></div>
+<section style="margin-top:16px"><h2>Reviewer Decision</h2><button onclick="review('Accurate')">Accurate</button><button onclick="review('Inaccurate')">Inaccurate</button><button onclick="review('Needs Review')">Needs Review</button><p id="result" role="status">No decision recorded yet.</p></section>
+</main><script>function review(decision){document.getElementById('result').textContent='Decision recorded: '+decision;}</script></body></html>
