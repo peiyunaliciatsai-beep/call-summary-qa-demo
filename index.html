@@ -1,14 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Call Summary QA Reviewer</title>
-<style>
-body{font-family:Arial,sans-serif;background:#f4f6fa;color:#253247;margin:0;padding:32px}main{max-width:1000px;margin:auto}.panels{display:grid;grid-template-columns:1fr 1fr;gap:16px}section{background:white;border:1px solid #dde3ec;border-radius:12px;padding:22px}p{line-height:1.7}.warning{background:#fff2d9;padding:10px;border-radius:6px}button{border:1px solid #ccd5e2;background:white;padding:12px 18px;border-radius:8px;cursor:pointer;margin:5px}button:hover{background:#e8efff}#result{font-weight:bold;margin-top:15px}@media(max-width:650px){.panels{grid-template-columns:1fr}body{padding:15px}}
-</style>
-</head>
-<body><main><h1>Call Summary QA Reviewer</h1><p>Compare the call transcript with its AI-generated summary.</p>
-<div class="panels"><section><h2>Call Transcript</h2><p><strong>Customer:</strong> My delivery hasn't arrived.</p><p><strong>Agent:</strong> I can see it's delayed until Friday.</p><p><strong>Customer:</strong> Could I get a refund instead?</p><p><strong>Agent:</strong> I'll need to check with my manager.</p></section>
-<section><h2>AI-Generated Summary</h2><p>The customer contacted support about a delayed delivery.</p><p class="warning">The agent confirmed a refund would be issued.</p></section></div>
-<section style="margin-top:16px"><h2>Reviewer Decision</h2><button onclick="review('Accurate')">Accurate</button><button onclick="review('Inaccurate')">Inaccurate</button><button onclick="review('Needs Review')">Needs Review</button><p id="result" role="status">No decision recorded yet.</p></section>
-</main><script>function review(decision){document.getElementById('result').textContent='Decision recorded: '+decision;}</script></body></html>
+<!doctype html>
+<html lang="en-GB">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="Evidence-based QA review of fictional collections call summaries."><title>SoundSense · Summary Review</title><link rel="stylesheet" href="styles.css"></head>
+<body>
+<header class="topbar"><div class="brand"><span class="brand-icon" aria-hidden="true">≋</span><div><strong>SoundSense<span>AI</span></strong><small>Review workspace</small></div></div><div class="header-actions"><span class="synthetic">20 fictional calls</span><button id="rules-open">Rules</button><button id="export" class="primary">Export report</button></div></header>
+<div id="notice" role="status" aria-live="polite"></div>
+<div class="workspace">
+<aside class="queue"><div class="queue-heading"><span class="eyebrow">WORKSPACE</span><h1>Call reviews</h1></div><div class="progress-label"><strong id="progress-label">0 of 20 reviewed</strong><span id="progress-percent">0%</span></div><progress id="progress" max="20" value="0" aria-label="Completed reviews"></progress><label class="sr-only" for="search">Search calls</label><input id="search" type="search" placeholder="Search calls…"><label class="sr-only" for="filter">Filter review status</label><select id="filter"><option value="all">All calls</option><option value="unreviewed">Not reviewed</option><option value="acceptable">Acceptable</option><option value="correction">Needs correction</option><option value="uncertain">Uncertain</option></select><nav id="call-list" aria-label="Calls"></nav><div class="queue-footer"><span class="local-indicator" aria-hidden="true"></span> Saved in this browser</div></aside>
+<main id="main" tabindex="-1"><div id="loading">Loading calls…</div></main>
+</div>
+<dialog id="rules-dialog"><div class="dialog-heading"><div><span class="eyebrow">REVIEW REFERENCE</span><h2>Review guide</h2></div><button id="rules-close" aria-label="Close guidance">✕</button></div><ol class="workflow-guide"><li><strong>Compare</strong><span>Read the summary against the transcript.</span></li><li><strong>Add findings</strong><span>Highlight text, add a note and link turns.</span></li><li><strong>Finish</strong><span>Choose a decision. The next unfinished call opens.</span></li></ol><p>Use the transcript as your reference. Some summaries are accurate. Flag omissions only for discussed information required by the rules.</p><div class="guidance-grid"><section><h3>Meaningful errors</h3><p>Wrong amounts, dates, payment status, authority, hardship or next steps can mislead the next colleague. Cite the relevant turns.</p></section><section><h3>Keep nuance</h3><p>Deferral is not refusal. An estimate is not a promise. Contact holds do not cancel debt. Mark uncertainty when evidence is ambiguous.</p></section><section><h3>Rule exceptions</h3><p>Full or confirmed pre-call security is required for “DPA completed”. Otherwise use “no DPA stated with agent”. Retain named advice bodies; redact identifying private entities.</p></section><section><h3>Amounts depend on context</h3><p>Omit numerical arrears, balances and payments taken now. Preserve relevant situational costs and exact future payment commitments.</p></section></div><details><summary>Full supplied summary rules</summary><pre id="full-rules"></pre></details><details><summary>Supplied data and review guidance</summary><pre id="full-readme"></pre></details></dialog>
+<script type="module" src="app.js"></script>
+</body></html>
